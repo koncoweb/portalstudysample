@@ -976,3 +976,138 @@ textarea.field-input {
     font-size: 1.8rem;
   }
 }
+
+/* =========================================================
+   Peningkatan desain: sentuhan visual modern
+   ========================================================= */
+
+/* --- Latar dengan gradasi lembut --- */
+body {
+  background:
+    radial-gradient(1200px 400px at 50% -100px, rgba(16, 177, 235, 0.14), transparent 60%),
+    radial-gradient(900px 300px at 100% 0, rgba(80, 87, 178, 0.1), transparent 55%),
+    #eef2f7;
+  background-attachment: fixed;
+}
+
+/* --- Header: brand-mark berkilau --- */
+.brand-mark {
+  background: linear-gradient(135deg, #10b1eb 0%, #5057b2 60%, #095c8a 100%);
+  box-shadow: 0 4px 12px rgba(16, 177, 235, 0.35);
+}
+
+/* --- Tabbar: item aktif dengan pill berwarna --- */
+.tab-item {
+  position: relative;
+}
+.tab-item.active::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, rgba(16, 177, 235, 0.22), rgba(80, 87, 178, 0.16));
+  z-index: -1;
+}
+.tab-item.active .tab-ico {
+  color: var(--color-primary-dark);
+}
+
+/* --- Kartu kursus: aksen gradasi kiri + header berwarna --- */
+.course-card {
+  position: relative;
+  overflow: hidden;
+}
+.course-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  opacity: 0.9;
+}
+.course-card:hover::before {
+  opacity: 1;
+}
+
+.badge {
+  background: linear-gradient(135deg, #ebf397, #d9f0a0);
+  box-shadow: 0 2px 6px rgba(235, 243, 151, 0.5);
+}
+
+/* --- Progress bar lebih cerah --- */
+.progress-fill {
+  background: linear-gradient(90deg, #10b1eb, #5057b2);
+  box-shadow: 0 0 6px rgba(16, 177, 235, 0.4);
+}
+
+/* --- Tombol primary: gradasi + shadow --- */
+.btn-primary {
+  background: linear-gradient(135deg, #10b1eb, #095c8a);
+  box-shadow: 0 4px 14px rgba(16, 177, 235, 0.3);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0ea5d9, #07486f);
+  box-shadow: 0 6px 18px rgba(16, 177, 235, 0.4);
+  transform: translateY(-1px);
+}
+
+/* --- Kartu login: lebih premium --- */
+.login-card {
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
+  border-color: rgba(16, 177, 235, 0.14);
+}
+.login-brand-icon {
+  box-shadow: 0 8px 20px rgba(16, 177, 235, 0.32);
+}
+
+/* --- Video item: hover lebih hidup --- */
+.video-item {
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.video-item:hover {
+  transform: translateX(2px);
+}
+.video-thumb {
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+/* --- Status badge selesai: lebih ceria --- */
+.status-badge.is-done {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+  color: #15803d;
+  box-shadow: 0 1px 4px rgba(34, 197, 94, 0.2);
+}
+
+/* --- Admin row: aksen hover --- */
+.admin-row {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.admin-row:hover {
+  border-color: rgba(16, 177, 235, 0.4);
+  box-shadow: 0 4px 16px rgba(16, 177, 235, 0.12);
+  transform: translateY(-1px);
+}
+
+/* --- Teks heading: warna aksen subtle (dengan fallback) --- */
+.page-title {
+  color: var(--color-primary-dark);
+  background: linear-gradient(120deg, var(--color-primary-dark), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@supports not (-webkit-background-clip: text) {
+  .page-title {
+    -webkit-text-fill-color: initial;
+    background: none;
+  }
+}
+.page-sub {
+  color: #526078;
+}
