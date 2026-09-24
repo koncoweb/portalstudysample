@@ -333,10 +333,40 @@ function renderDashboard() {
       '<h1 class="page-title">Halo, Siswa 👋</h1>' +
       '<p class="page-sub">Pilih kursus dan mulai belajar lewat video pilihanmu.</p>' +
     '</section>' +
+    renderSlider(kursus) +
     '<section class="grid-courses">' +
       kursus.map(renderKartuKursus).join('') +
     '</section>' +
     renderRiwayat()
+  );
+}
+
+/* Slider / carousel kursus unggulan di halaman depan */
+function renderSlider(kursus) {
+  const items = (kursus || []).slice(0, 5);
+  if (!items.length) return '';
+  const slides = items.map(function (k, i) {
+    const pct = progresKursus(k).pct;
+    return (
+      '<a class="slide" href="#/kursus/' + encodeURIComponent(k.id) + '" style="--i:' + i + '">' +
+        '<span class="slide-badge">' + esc(k.kategori) + '</span>' +
+        '<span class="slide-title">' + esc(k.judul) + '</span>' +
+        '<span class="slide-desc">' + esc(k.deskripsi) + '</span>' +
+        '<span class="slide-meta">📺 ' + totalVideo(k) + ' video • ' + pct + '% selesai</span>' +
+        '<span class="slide-cta">Mulai Belajar →</span>' +
+      '</a>'
+    );
+  }).join('');
+  const dots = items.map(function (_, i) {
+    return '<button type="button" class="slider-dot" data-slide="' + i + '" aria-label="Slide ' + (i + 1) + '"></button>';
+  }).join('');
+  return (
+    '<section class="slider" aria-label="Kursus unggulan">' +
+      '<div class="slider-track">' + slides + '</div>' +
+      '<button type="button" class="slider-nav slider-prev" aria-label="Sebelumnya">‹</button>' +
+      '<button type="button" class="slider-nav slider-next" aria-label="Berikutnya">›</button>' +
+      '<div class="slider-dots">' + dots + '</div>' +
+    '</section>'
   );
 }
 
@@ -876,6 +906,37 @@ function render() {
     const route = link.getAttribute('data-route');
     link.classList.toggle('active', route === activeRoute);
   });
+
+  // Slider: navigasi panah + dots + scroll-snap
+  const slider = document.querySelector('.slider');
+  if (slider) {
+    const track = slider.querySelector('.slider-track');
+    const dots = slider.querySelectorAll('.slider-dot');
+    const step = function () {
+      const idx = Math.round(track.scrollLeft / track.clientWidth);
+      return Math.max(0, Math.min(idx, dots.length - 1));
+    };
+    const goTo = function (idx) {
+      const max = dots.length - 1;
+      const i = Math.max(0, Math.min(idx, max));
+      track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+      updateDots(i);
+    };
+    const updateDots = function (i) {
+      dots.forEach(function (d, di) {
+        d.classList.toggle('active', di === i);
+      });
+    };
+    const prev = slider.querySelector('.slider-prev');
+    const next = slider.querySelector('.slider-next');
+    if (prev) prev.addEventListener('click', function () { goTo(step() - 1); });
+    if (next) next.addEventListener('click', function () { goTo(step() + 1); });
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-slide'), 10)); });
+    });
+    track.addEventListener('scroll', function () { updateDots(step()); }, { passive: true });
+    updateDots(0);
+  }
 
   window.scrollTo(0, 0);
 }
