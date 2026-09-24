@@ -1111,3 +1111,147 @@ body {
 .page-sub {
   color: #526078;
 }
+
+/* =========================================================
+   Slider kursus unggulan (halaman depan)
+   ========================================================= */
+.slider {
+  position: relative;
+  margin: 0 -6px 22px;
+  --slider-h: 190px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 6px 10px;
+}
+.slider-track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 88%;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: var(--slider-h);
+  border-radius: 20px;
+  padding: 20px;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  box-shadow: 0 8px 24px rgba(16, 177, 235, 0.25);
+}
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(15, 23, 42, 0.55));
+  z-index: 0;
+}
+.slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-badge {
+  align-self: flex-start;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(4px);
+}
+
+.slide-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.slide-desc {
+  font-size: 0.85rem;
+  opacity: 0.92;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.slide-meta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.slide-cta {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--color-primary-dark);
+}
+
+/* Navigasi panah */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.2);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+}
+.slider-prev { left: 2px; }
+.slider-next { right: 2px; }
+.slider-nav:hover {
+  background: #fff;
+}
+
+/* Indikator dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+.slider-dot.active {
+  width: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
