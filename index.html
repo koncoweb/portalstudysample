@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal Belajar — E-Learning Siswa</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#/" class="brand">
+        <span class="brand-mark">🎓</span>
+        <span class="brand-text">Portal Belajar</span>
+      </a>
+      <div class="header-user" id="header-user" hidden>
+        <span class="user-chip" id="user-chip"></span>
+        <button type="button" class="avatar-btn" id="nav-logout-mobile" aria-label="Keluar">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="container main-wrap" tabindex="-1"></main>
+
+  <!-- Bottom navigation ala mobile app -->
+  <nav class="tabbar" aria-label="Navigasi bawah">
+    <a href="#/" class="tab-item" data-route="/" id="tab-dashboard">
+      <span class="tab-ico">🏠</span>
+      <span class="tab-label">Beranda</span>
+    </a>
+    <a href="#/kursus" class="tab-item" data-route="/kursus" id="tab-kursus">
+      <span class="tab-ico">📚</span>
+      <span class="tab-label">Kursus</span>
+    </a>
+    <a href="#/admin" class="tab-item" data-route="/admin" id="nav-admin" hidden>
+      <span class="tab-ico">🛠️</span>
+      <span class="tab-label">Kelola</span>
+    </a>
+    <a href="#/masuk" class="tab-item" data-route="/masuk" id="nav-login">
+      <span class="tab-ico">👤</span>
+      <span class="tab-label">Masuk</span>
+    </a>
+    <button type="button" class="tab-item tab-logout" data-route="/logout" id="nav-logout" hidden>
+      <span class="tab-ico">🚪</span>
+      <span class="tab-label">Keluar</span>
+    </button>
+  </nav>
+
+  <footer data-bolo-seo style="height:0;overflow:hidden" aria-hidden="true"><a href="https://boloku.com" style="color:transparent;font-size:0;line-height:0;text-decoration:none">AI pembuat aplikasi tanpa koding</a></footer>
+
+  <script src="./src/lib/db.js"></script>
+  <script src="./src/main.js"></script>
+</body>
+</html>
